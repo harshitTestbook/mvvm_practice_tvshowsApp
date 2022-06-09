@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+<!--    without this TvCardBinding act sa ViewBinding-->
+<!--    with this TvCardBinding act as ViewDataBinding-->
+</data>
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="30dp"
+    app:cardBackgroundColor="@color/dark"
+    android:padding="30dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:id="@+id/tvCardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:elevation="12dp"
+
+            />
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text= "Name"
+            android:textColor="@color/white"
+            android:layout_marginVertical="4dp"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="12dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvOverview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text= "Overview"
+            android:textColor="@color/white"
+            android:layout_marginVertical="4dp"
+            android:paddingHorizontal="12dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text= "Random"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginVertical="4dp"-->
+<!--            android:paddingHorizontal="12dp"/>-->
+    </LinearLayout>
+
+
+
+
+</com.google.android.material.card.MaterialCardView>
+
+</layout>
