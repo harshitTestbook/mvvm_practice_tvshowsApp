@@ -2,6 +2,5 @@ package com.example.mvvmpractice.viewmodel
 
 interface ViewHolderClickedInterface {
 
-    fun onViewHolderClicked(movieId : String)
-
+    fun onViewHolderClicked(movieId: String)
 }

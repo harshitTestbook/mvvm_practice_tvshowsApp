@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mvvmpractice.R
 import com.example.mvvmpractice.databinding.HeadingBinding
-import com.example.mvvmpractice.databinding.TvShowDetailsCardBinding
 import com.example.mvvmpractice.model.HeadingModel
-import com.example.mvvmpractice.model.Result
 import com.example.mvvmpractice.viewmodel.ViewHolderClickedInterface
 
 class HeadingViewHolder(

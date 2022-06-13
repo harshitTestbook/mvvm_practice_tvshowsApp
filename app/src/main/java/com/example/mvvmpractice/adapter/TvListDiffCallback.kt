@@ -1,10 +1,7 @@
 package com.example.mvvmpractice.adapter
 
-import android.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmpractice.model.Result
-import com.example.mvvmpractice.model.TvModel
 
 class TvListDiffCallback : DiffUtil.ItemCallback<Any>() {
 

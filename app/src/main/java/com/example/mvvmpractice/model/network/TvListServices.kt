@@ -20,12 +20,12 @@ interface TvListServices {
     suspend fun getLatestTvShows(
         @Query("api_key") key: String,
         @Query("language") language: String = "en-US",
-    ):LatestTvShowDetailsModel
+    ): LatestTvShowDetailsModel
 
     @GET("{tv_id}")
     suspend fun getTvShowDetails(
-        @Path("tv_id") tvId:String,
+        @Path("tv_id") tvId: String,
         @Query("api_key") key: String,
         @Query("language") language: String = "en-US",
-    ):Result
+    ): Result
 }

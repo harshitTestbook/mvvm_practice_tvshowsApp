@@ -3,18 +3,26 @@ package com.example.mvvmpractice.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mvvmpractice.model.Result
 import com.example.mvvmpractice.repository.MoreTvShowsRepo
 import kotlinx.coroutines.launch
-import kotlin.Error
 
-class MoreTvShowsViewModel(val tvId:String) : ViewModel(), ViewHolderClickedInterface {
+class MoreTvShowsViewModel(private val tvId: String) : ViewModel(), ViewHolderClickedInterface {
     val moreTvShowsList: MutableLiveData<MutableList<Any>> = MutableLiveData()
-   private val repo = MoreTvShowsRepo()
+    private val repo = MoreTvShowsRepo()
 
-
+    val secondActivityMLD = MutableLiveData<Pair<String, String>>()
     override fun onViewHolderClicked(movieId: String) {
 
+        val movie = moreTvShowsList.value?.get(0) as Result
+        var a = Pair(movieId, movie.name)
+        secondActivityMLD.value = a
     }
+
+//    override fun onViewHolderClicked2(movieId: String, movieName: String) {
+//        var a = Pair(movieId, movieName)
+//        secondActivityMLD.value = a
+//        }
 
     fun getMoreTvShowsList() {
         viewModelScope.launch {
@@ -30,7 +38,7 @@ class MoreTvShowsViewModel(val tvId:String) : ViewModel(), ViewHolderClickedInte
         }
     }
 
-   private fun onSuccessResponse(response: MutableList<Any>) {
+    private fun onSuccessResponse(response: MutableList<Any>) {
         moreTvShowsList.value = response
     }
 }

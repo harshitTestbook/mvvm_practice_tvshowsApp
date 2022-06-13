@@ -1,8 +1,6 @@
 package com.example.mvvmpractice
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +9,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmpractice.adapter.TvListAdapter
+import com.example.mvvmpractice.databinding.MainFragmentBinding
 import com.example.mvvmpractice.model.Result
 import com.example.mvvmpractice.viewmodel.TvListViewModel
 import com.example.mvvmpractice.viewmodel.TvListViewModelFactory
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.main_fragment.view.*
 
-class TvListFragment() : Fragment() {
+class TvListFragment : Fragment() {
 
     companion object {
         fun newInstance() = TvListFragment().apply {
-
         }
     }
 
@@ -30,21 +28,18 @@ class TvListFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.d("YO", "onCreateView")
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
 
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return _binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("YO", "onViewCreated")
 
         init()
     }
 
     private fun init() {
-
-        Log.d("YO", "init")
 
         initViewModel()
         initViewModelObserver()
@@ -53,27 +48,24 @@ class TvListFragment() : Fragment() {
     }
 
     private fun initData() {
-        Log.d("YO", "initData")
 
         viewModel.getTvList()
     }
 
     private fun initViewModelObserver() {
 
-        Log.d("YO", "initViewModelObserver")
-
         viewModel.tvList.observe(viewLifecycleOwner) {
             onGetTvListData(it)
         }
 
-        viewModel.onMovieClickedMLD.observe(viewLifecycleOwner , {
+        viewModel.onMovieClickedMLD.observe(viewLifecycleOwner, {
             onTvShowClicked(it)
         })
     }
 
     private fun onTvShowClicked(tvId: String?) {
         tvId?.let {
-            MoreTvShowsActivity.start(requireContext() , tvId )
+            MoreTvShowsActivity.start(requireContext(), tvId)
         }
     }
 
@@ -93,23 +85,27 @@ class TvListFragment() : Fragment() {
     private lateinit var viewModel: TvListViewModel
     private fun initViewModel() {
 
-        Log.d("YO", "initViewModel")
 
         @Suppress("DEPRECATION")
-
         viewModel =
             ViewModelProviders.of(this, TvListViewModelFactory()).get(TvListViewModel::class.java)
 
     }
 
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var adapter:TvListAdapter
+    private lateinit var adapter: TvListAdapter
+    private var _binding: MainFragmentBinding? = null
+
+
     private fun initAdapter() {
         linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+
         //sending viewModel to TvListAdapter in order to implement onClick feature
-        adapter=TvListAdapter(viewModel)
-        rv_movie_cards.adapter = adapter
-        rv_movie_cards.layoutManager = linearLayoutManager
+        adapter = TvListAdapter(viewModel)
+
+        _binding?.root?.rv_movie_cards?.adapter = adapter
+
+        _binding?.root?.rv_movie_cards?.layoutManager = linearLayoutManager
 
     }
 }

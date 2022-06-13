@@ -12,11 +12,13 @@ import com.example.mvvmpractice.viewmodel.ViewHolderClickedInterface
 
 class MoreTvShowsAdapter(val clickedInterface: ViewHolderClickedInterface) :
     ListAdapter<Any, RecyclerView.ViewHolder>(MoreTvShowsDiffCallback()) {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
 
         var viewHolder: RecyclerView.ViewHolder? = null
-        var inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
 
         when (viewType) {
             R.layout.heading -> viewHolder =

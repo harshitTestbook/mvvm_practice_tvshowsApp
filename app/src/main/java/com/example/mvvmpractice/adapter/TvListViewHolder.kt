@@ -12,8 +12,8 @@ import com.example.mvvmpractice.viewmodel.ViewHolderClickedInterface
 
 
 class TvListViewHolder(
-    val binding: TvShowDetailsCardBinding,
-    val clickedInterface: ViewHolderClickedInterface
+    private val binding: TvShowDetailsCardBinding,
+    private val clickedInterface: ViewHolderClickedInterface
 ) : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
@@ -42,6 +42,8 @@ class TvListViewHolder(
 
 
         binding.tvCardView.setOnClickListener {
+
+
             clickedInterface.onViewHolderClicked(tvShow.id)
         }
     }

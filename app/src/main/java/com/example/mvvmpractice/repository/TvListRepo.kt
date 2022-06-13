@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class TvListRepo {
 
-    val API_KEY= "3d816e403a33527408671d04f46dbf07"
+    val API_KEY = "3d816e403a33527408671d04f46dbf07"
 
 
     suspend fun fetchTvData(): TvModel? {

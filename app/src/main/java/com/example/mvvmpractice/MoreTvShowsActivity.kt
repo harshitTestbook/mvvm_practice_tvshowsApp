@@ -11,27 +11,31 @@ class MoreTvShowsActivity : AppCompatActivity() {
     companion object {
         fun start(context: Context, tvId: String) {
             val intent = Intent(context, MoreTvShowsActivity::class.java)
-            intent.putExtra("tvId", tvId)
+            val bundle = Bundle()
+            bundle.putString("tvId", tvId)
+            intent.putExtra("bundle", bundle)
             context.startActivity(intent)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         val binding = MoreTvShowsActivityBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
-//        val tvIdString = intent.getStringExtra("tvId")
-//        binding.root.tvMainActivity2.text=tvIdString
+        val bundle = intent.getBundleExtra("bundle")
 
-        initFragment(intent)
+        initFragment(bundle!!)
 
     }
 
-    private fun initFragment(intent: Intent) {
+    private fun initFragment(bundle: Bundle) {
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view_tag1, MoreTvShowsFragment.newInstance(intent))
+            .replace(R.id.fragment_container_view_tag1, MoreTvShowsFragment.newInstance(bundle))
             .commitNow()
     }
 }

@@ -7,22 +7,21 @@ import com.example.mvvmpractice.model.Result
 import com.example.mvvmpractice.model.TvModel
 import com.example.mvvmpractice.repository.TvListRepo
 import kotlinx.coroutines.launch
-import java.lang.Error
 
-class TvListViewModel : ViewModel() , ViewHolderClickedInterface {
+class TvListViewModel : ViewModel(), ViewHolderClickedInterface {
 
     val tvList: MutableLiveData<List<Result>> = MutableLiveData()
-   private val tvRepo: TvListRepo = TvListRepo()
+    private val tvRepo: TvListRepo = TvListRepo()
 
     fun getTvList() {
 
         viewModelScope.launch {
 
             try {
-                val respone = tvRepo.fetchTvData()
+                val response = tvRepo.fetchTvData()
 
-                if (respone != null) {
-                    onGetTvListResponseSuccess(respone)
+                if (response != null) {
+                    onGetTvListResponseSuccess(response)
 
                 }
             } catch (error: Error) {
@@ -31,7 +30,7 @@ class TvListViewModel : ViewModel() , ViewHolderClickedInterface {
         }
     }
 
-   private fun onGetTvListResponseSuccess(response: TvModel) {
+    private fun onGetTvListResponseSuccess(response: TvModel) {
         tvList.value = response.results
     }
 
@@ -39,4 +38,6 @@ class TvListViewModel : ViewModel() , ViewHolderClickedInterface {
     override fun onViewHolderClicked(movieId: String) {
         onMovieClickedMLD.value = movieId
     }
+
+
 }
